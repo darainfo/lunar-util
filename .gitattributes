@@ -1,0 +1,9 @@
+#
+# https://help.github.com/articles/dealing-with-line-endings/
+#
+# These are explicitly windows files and should use crlf
+*.bat           text eol=crlf
+*.java linguist-detectable=true
+*.js linguist-detectable=false
+*.html linguist-detectable=false
+*.xml linguist-detectable=false
