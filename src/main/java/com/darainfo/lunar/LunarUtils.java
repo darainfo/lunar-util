@@ -12,7 +12,7 @@ import com.darainfo.lunar.vo.LunarYmd;
 import com.darainfo.lunar.vo.SolarLunarDayInfo;
 
 /**
- * 음력-> 양력 변환 util
+ * 음력-&gt; 양력 변환 util
  * -----------------------------------------------------------------------------
 * @fileName : LunarUtils.java
 * @author	: ytkim
@@ -25,7 +25,7 @@ import com.darainfo.lunar.vo.SolarLunarDayInfo;
 public final class LunarUtils {
 
 	/**
-	 * solar date -> 음력 일자로 변경 SolarLunarDayInfo
+	 * solar date -&gt; 음력 일자로 변경 SolarLunarDayInfo
 	 * 
 	 * @method  : getSolarToLunarDay
 	 * @author   : ytkim
@@ -38,7 +38,7 @@ public final class LunarUtils {
 	}
 	
 	/**
-	 * solar date -> 음력 일자로 변경 2005-12-25 -> "2005-11-24"
+	 * solar date -&gt; 음력 일자로 변경 2005-12-25 -&gt; "2005-11-24"
 	 * 
 	 * @method  : getSolarToStringLunarDay
 	 * @author   : ytkim
@@ -51,7 +51,7 @@ public final class LunarUtils {
 	}
 	
 	/**
-	 * 양력 시작일 ~ 음력 시작일 -> 음력 날짜 목록으로 리턴
+	 * 양력 시작일 ~ 음력 시작일 -&gt; 음력 날짜 목록으로 리턴
 	 * 
 	 * @method  : getSolarToLunarDayList
 	 * @author   : ytkim
@@ -211,7 +211,20 @@ public final class LunarUtils {
 	}
 	
 	/**
-	 * 음력 날자 -> 양력 날짜 
+	 * 음력 날자 -&gt; 양력 날짜 
+	 * 
+	 * @method  : getSolarToLunarDayList
+	 * @author   : ytkim
+	 * @date   : 2022. 1. 23. 
+	 * @param lunarDate 음력날짜
+	 * @return 
+	 */
+	public static String getLunarToStringSolarDay(Date lunarDate){
+		return getLunarToSolarDay(dateToLocalDate(lunarDate)).getSolYmd();
+	}
+	
+	/**
+	 * 음력 날자 -&gt; 양력 날짜 
 	 * 
 	 * @method  : getSolarToLunarDayList
 	 * @author   : ytkim
@@ -220,12 +233,8 @@ public final class LunarUtils {
 	 * @param leap 윤달여부
 	 * @return
 	 */
-	public static String getLunarToStringSolarDay(Date solarDate){
-		return getLunarToSolarDay(dateToLocalDate(solarDate)).getSolYmd();
-	}
-	
-	public static String getLunarToStringSolarDay(Date solarDate, boolean leap){
-		return getLunarToSolarDay(dateToLocalDate(solarDate), leap).getSolYmd();
+	public static String getLunarToStringSolarDay(Date lunarDate, boolean leap){
+		return getLunarToSolarDay(dateToLocalDate(lunarDate), leap).getSolYmd();
 	}
 	
 	public static SolarLunarDayInfo getLunarToSolarDay(LocalDate lunarDate) {
@@ -308,12 +317,11 @@ public final class LunarUtils {
 	}
 	
 	/**
-	 * today date -> 음력 일자로 변경. 
+	 * today date -&gt; 음력 일자로 변경. 
 	 * 
 	 * @method  : todayToLunarDay
 	 * @author   : ytkim
 	 * @date   : 2022. 1. 23. 
-	 * @param dt
 	 * @return
 	 */
 	public static SolarLunarDayInfo todayToLunarDay(){
@@ -322,7 +330,7 @@ public final class LunarUtils {
 	}
 	
 	/**
-	 * Date -> to LocalDate 
+	 * Date -&gt; to LocalDate 
 	 * 
 	 * @method  : dateToLocalDate
 	 * @author   : ytkim

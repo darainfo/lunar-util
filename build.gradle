@@ -25,6 +25,9 @@ def projectName ='lunar-util'
 def projectDesc ='lunar util'
 def projectGroupId ='com.darainfo'
 def projectVersion ='0.0.1'
+def releasesDomain=project.LUNAR_TOKEN_RELEASES_URL
+def releasesId=project.LUNAR_TOKEN_RELEASES_ID
+def releasesPW=project.LUNAR_TOKEN_RELEASES_PW
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -121,6 +124,71 @@ jar{
 java {
     withJavadocJar()
     withSourcesJar()
+}
+
+publishing  {
+    publications {
+        mavenJava(MavenPublication) {
+            afterEvaluate {
+                groupId = projectGroupId
+                artifactId = projectName
+                version = projectVersion
+                from components.java
+            }
+            /*
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+            */
+            pom {
+                name = projectName
+                description = projectDesc
+                url = 'https://github.com/darainfo/lunar-util'
+                
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = releasesId
+                        name = 'darainfo'
+                        email = 'darainfosys@gmail.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/darainfo/lunar-util.git'
+                    developerConnection = 'scm:git:ssh://github.com/darainfo/lunar-util.git'
+                    url = 'https://github.com/darainfo/lunar-util'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "sonatype"
+            url ="https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            //url = "https://oss.sonatype.org/content/repositories/releases"
+
+            credentials(PasswordCredentials) {
+                username = releasesId
+                password = releasesPW
+            }
+        }
+    }
+}
+
+signing {
+	useGpgCmd()
+	
+	sign configurations.archives
 }
 
 javadoc {
