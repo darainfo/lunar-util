@@ -187,8 +187,10 @@ publishing  {
 
 signing {
 	useGpgCmd()
-	
-	sign configurations.archives
+
+    publishing.publications.all { publication ->
+        sign publication
+    }
 }
 
 javadoc {
